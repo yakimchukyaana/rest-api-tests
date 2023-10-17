@@ -16,12 +16,6 @@ public class UserSpec {
             .log().method()
             .log().uri();
 
-    public static ResponseSpecification userResponseSpec = new ResponseSpecBuilder()
-            .log(STATUS)
-            .log(BODY)
-            .expectStatusCode(200)
-            .build();
-
     public static ResponseSpecification userNotFoundResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)

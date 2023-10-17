@@ -5,7 +5,7 @@ import in.reqres.models.RegisterUser.RegisterUserRequestModel;
 import in.reqres.models.RegisterUser.RegisterUserResponseModel;
 import org.junit.jupiter.api.Test;
 
-import static in.reqres.specs.RegisterUserCpec.*;
+import static in.reqres.specs.RegisterUserSpec.*;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
