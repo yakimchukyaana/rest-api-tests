@@ -1,4 +1,4 @@
-package in.reqres.models.RegisterUser;
+package in.reqres.models.register;
 
 import lombok.Data;
 

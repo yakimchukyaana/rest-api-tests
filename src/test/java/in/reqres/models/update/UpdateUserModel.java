@@ -1,4 +1,4 @@
-package in.reqres.models.updateUser;
+package in.reqres.models.update;
 
 import lombok.Data;
 

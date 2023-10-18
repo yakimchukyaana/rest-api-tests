@@ -1,11 +1,11 @@
 package in.reqres.tests;
 
-import in.reqres.models.RegisterUser.MissingPasswordResponseModel;
-import in.reqres.models.RegisterUser.RegisterUserRequestModel;
-import in.reqres.models.RegisterUser.RegisterUserResponseModel;
+import in.reqres.models.register.MissingPasswordResponseModel;
+import in.reqres.models.register.RegisterUserRequestModel;
+import in.reqres.models.register.RegisterUserResponseModel;
 import org.junit.jupiter.api.Test;
 
-import static in.reqres.specs.RegisterUserSpec.*;
+import static in.reqres.specs.RequestSpec.*;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,12 +19,12 @@ public class RegisterUserTests extends TestBase {
         registerData.setPassword("pistol");
 
         RegisterUserResponseModel response = step("Register user", () ->
-                given(registerUserRequestSpec)
+                given(requestSpec)
                         .body(registerData)
                         .when()
                         .post("/register")
                         .then()
-                        .spec(registerUserResponseSpec)
+                        .spec(userResponse200Spec)
                         .extract().as(RegisterUserResponseModel.class));
         step("Verify response", () -> {
             assertThat(response.getId()).isEqualTo(4);
@@ -38,12 +38,12 @@ public class RegisterUserTests extends TestBase {
         regData.setEmail("sydney@fife");
 
         MissingPasswordResponseModel response = step("Register user without password", () ->
-                given(registerUserRequestSpec)
+                given(requestSpec)
                         .body(regData)
                         .when()
                         .post("/register")
                         .then()
-                        .spec(missingPasswordResponseSpec)
+                        .spec(missingPasswordResponse400Spec)
                         .extract().as(MissingPasswordResponseModel.class));
 
         step("Verify response", () ->

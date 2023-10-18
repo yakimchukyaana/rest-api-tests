@@ -1,11 +1,10 @@
 package in.reqres.tests;
 
-import in.reqres.models.updateUser.UpdateUserModel;
-import in.reqres.models.updateUser.UpdateUserResponseModel;
+import in.reqres.models.update.UpdateUserModel;
+import in.reqres.models.update.UpdateUserResponseModel;
 import org.junit.jupiter.api.Test;
 
-import static in.reqres.specs.UpdateUserSpec.updateUserRequestSpec;
-import static in.reqres.specs.UpdateUserSpec.updateUserResponseSpec;
+import static in.reqres.specs.RequestSpec.*;
 import static io.restassured.RestAssured.given;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,12 +18,12 @@ public class UpdateUserTests extends TestBase {
         updateData.setJob("zion resident");
 
         UpdateUserResponseModel response = step("Update user info", () ->
-                given(updateUserRequestSpec)
+                given(requestSpec)
                         .body(updateData)
                         .when()
                         .patch("/users/2")
                         .then()
-                        .spec(updateUserResponseSpec)
+                        .spec(userResponse200Spec)
                         .extract().as(UpdateUserResponseModel.class));
         step("Verify response", () -> {
             assertThat(response.getName()).isEqualTo("morpheus");

@@ -1,4 +1,4 @@
-package in.reqres.models.createUser;
+package in.reqres.models.create;
 
 import lombok.Data;
 
