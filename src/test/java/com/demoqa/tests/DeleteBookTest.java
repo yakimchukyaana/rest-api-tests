@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static com.demoqa.tests.TestData.credentials;
 import static com.demoqa.tests.TestData.getISBN;
 
-public class DeleteBookTestTest extends TestBase {
+public class DeleteBookTest extends TestBase {
     @Test
     @DisplayName("Delete book")
     void deleteBookFromProfileTest() {
