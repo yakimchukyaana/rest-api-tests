@@ -4,6 +4,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.api.AuthorizationApi;
 import com.demoqa.api.BooksApi;
+import com.demoqa.helpers.Attach;
+import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -34,8 +36,18 @@ public class TestBase {
         Configuration.browserCapabilities = capabilities;
     }
 
+    @BeforeEach
+    void addListener() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+    }
+
     @AfterEach
-    void shutDown() {
+    void addAttachments() {
+        Attach.screenshotAs("Screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+
         closeWebDriver();
     }
 }
